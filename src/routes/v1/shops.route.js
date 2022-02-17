@@ -1,17 +1,23 @@
 const express = require("express");
 const passport = require("passport");
+const { route } = require("../../app.js");
 require("dotenv").config();
-const redis = require("../../config/redis.js");
 const { checkBlackListedJWT } = require("../../middlewares/blackListJWT");
+const Shop = require("../../models/shopSchema.js");
 
 const router = express.Router();
 
-router.post(
+router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
   checkBlackListedJWT,
   async (req, res) => {
-    res.status(200).send("done");
+    try {
+      const shops = await Shop.find();
+      res.status(200).json(shops);
+    } catch (e) {
+      res.status(500).send("server error");
+    }
   }
 );
 
