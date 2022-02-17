@@ -18,7 +18,7 @@ router.post(
       if (requiredCabs.length.length == 0) res.status(200).send("no cabs available");
       else {
         let randomCab = Math.floor((Math.random() * 100) % requiredCabs.length);
-        let otp = Math.floor(Math.random() * 10000);
+        let otp = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
         let currentCab = {
           _id: requiredCabs[randomCab]._id,
           availability: requiredCabs[randomCab].availability,
