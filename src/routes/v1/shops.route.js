@@ -13,7 +13,9 @@ router.get(
   checkBlackListedJWT,
   async (req, res) => {
     try {
-      const shops = await Shop.find();
+      if (req.body.type == undefined)
+        throw new Error("Please send the required fields in the body");
+      const shops = await Shop.find({ type: req.body.type });
       res.status(200).json(shops);
     } catch (e) {
       res.status(500).send("server error");

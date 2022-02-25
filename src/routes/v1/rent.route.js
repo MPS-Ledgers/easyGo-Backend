@@ -59,7 +59,7 @@ router.post(
       } else {
         let from = Math.floor(new Date(req.body.from).getTime() / 1000);
         let to = Math.floor(new Date(req.body.to).getTime() / 1000);
-        let docs = await Rental.find();
+        let docs = await Rental.find({ type: req.body.type });
         let response = [];
         docs.forEach((i) => {
           if (isMerging(i, from, to)) response.push(i);
