@@ -15,7 +15,7 @@ router.post(
     try {
       if (req.body.type == undefined)
         throw new Error("Please send the required fields in the body");
-      const shops = await Shop.find({ type: req.body.type });
+      const shops = await Shop.find({ [`availability.${req.body.type}`]: { $gte: 1 } });
       res.status(200).json(shops);
     } catch (e) {
       res.status(500).send("server error");
