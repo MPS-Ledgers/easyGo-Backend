@@ -7,7 +7,7 @@ const Shop = require("../../models/shopSchema.js");
 
 const router = express.Router();
 
-router.get(
+router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   checkBlackListedJWT,
