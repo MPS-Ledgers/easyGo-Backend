@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Location = new Schema({
-  latitude: Number,
-  longitude: Number,
+  latitude: String,
+  longitude: String,
 });
 
 const Rental = new Schema({

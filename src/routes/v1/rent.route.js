@@ -25,10 +25,7 @@ router.post(
         let from = Math.floor(new Date(req.body.from).getTime() / 1000);
         let to = Math.floor(new Date(req.body.to).getTime() / 1000);
         let newRental = new Rental({
-          location: {
-            latitude: req.body.latitude,
-            longitude: req.body.longitude,
-          },
+          location: req.body.location,
           from: from,
           to: to,
           type: req.body.type,
@@ -64,6 +61,7 @@ router.post(
         docs.forEach((i) => {
           if (isMerging(i, from, to)) response.push(i);
         });
+        console.log(response);
         res.status(200).json(response);
       }
     } catch (err) {
