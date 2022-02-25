@@ -48,7 +48,7 @@ const isMerging = (doc, from, to) => {
 };
 
 router.post(
-  "/buy_rent",
+  "/show_rent",
   passport.authenticate("jwt", { session: false }),
   checkBlackListedJWT,
   async (req, res) => {
